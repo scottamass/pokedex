@@ -4,18 +4,38 @@
 <body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
-    <h1>Looking for Players ..</h1>
-    {{ current_user.username }}
+    <h1>Pokedex</h1>
+    {{ current_user.id }}
     {% if current_user.pic != None %}
     <h2>pic</h2>
     {{current_user.pic}}
     {% else %}
     <h2>no pic</h2>
     {% endif %}
+<div class="container-fluid ">
 
-    <!-- Button trigger modal -->
+<h2>my current games</h2>
+<div class="row mx-auto ">
+{% for d in games_list %}
+<!-- {{d}} -->
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+<div class="card" style="width: 18rem;">
+  <a href="/games/{{d['postid']}}">
+  <img src="{{d['imgurl']}}" class="card-img-top" alt="...">
+    <div class="card-title">{{d['gname']}}</div>
+    <div class="card-text">{{d['title']}}</div>
+    <div class="card-text">{{d['_id']}}</div>
+  </a>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+<div class="container-fluid !direction !spacing mt-5">
+ 
+ <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
+    start a new game 
   </button>
   
   <!-- Modal -->
@@ -32,78 +52,26 @@
                 <label for="exampleInputEmail1" class="form-label">Title</label>
                 <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
               </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Game</label>
-                <select class="form-select form-select-lg mb-3" id="myDropdown" aria-label=".form-select-lg example">
-                    <option selected>Open this select menu</option>
-                    {% for g in games_list %}
-                    <option value="{{g.name}}" data-imagesrc="{{g.image}}"
-                    >{{g.name}}</option>
-                    
-                    {% endfor %}
-                  </select>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Gamer Tag</label>
-                <input type="text" class="form-control" name="gamer_tag" aria-describedby="emailHelp">
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Message</label>
-                <textarea type="text" class="form-control" name="message" aria-describedby="emailHelp"></textarea>
-              </div>
+              
+              <input type="radio" name="options" id="1" value="1"> pokemon crystal </input><br>
+              <input type="radio" name="options" id="2" value="2"> pokemon red </input><br>
+              <input type="radio" name="options" id="3" value="3"> pokemon yellow </input><br>
             
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit"  class="btn btn-primary">post game</button>
+          <button type="subimt" class="btn btn-primary">Submit</button> 
+          
 
         </div>
         </form>
       </div>
     </div>
   </div>
-    <section class="container">
-        <div class="row">
-            <div class="col">
-        <div id="output"> Loading ...</div>
-        </div>
-    </div>
-    </section>
-<script>
-            let loader = `<div class="boxLoading"></div>`;
-        var output = document.getElementById('output')
-        var myHtml =loader;
-       async function loadData(){
-
-        const response = await fetch('api/data_test',);
-        const data = await response.json();
-        //console.log(data)    
-        
-        data.map(d => {
-            //console.log(d);
-	 myHtml +=
-     `
-     <div class="card">
-        <div class="card-title">${d['title']}</div>
-        <div class="card-text">${d['message']}</div>
-    </div>
-        `;
-});
-output.innerHTML= myHtml
-       }
+</div>  
+    
 
 
-       loadData() 
-
-
-</script>
-<script>
-    $('#myDropdown').ddslick({
-    onSelected: function(selectedData){
-        //callback function: do something with selectedData;
-    }   
-});
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
