@@ -1,4 +1,4 @@
-_pokeradar ={
+{
     "games": {
         "gen": {
             "1": {
@@ -50,8 +50,8 @@ _pokeradar ={
                                     }
                                 ]
                             },
-                            "surfing": None,
-                            "fishing": None
+                            "surfing": null,
+                            "fishing": null
                         }
                     },
                     "route2": {
@@ -125,8 +125,8 @@ _pokeradar ={
                                     }
                                 ]
                             },
-                            "surfing": None,
-                            "fishing": None
+                            "surfing": null,
+                            "fishing": null
                         }
                     }
                 }

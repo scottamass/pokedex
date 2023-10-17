@@ -4,6 +4,8 @@ from flask import Flask, jsonify, redirect, request,session , render_template, u
 from flask_login import LoginManager, UserMixin, login_required,login_user,current_user, logout_user
 from flask_bcrypt import Bcrypt
 import requests
+from data.data import _pokeradar
+
 
 from pymongo import DESCENDING, MongoClient
 from bson import json_util,ObjectId
@@ -267,6 +269,7 @@ pokedex = [
     { "id": 151, "name": "Mew" }
 ]
 
+
 class User(UserMixin):
     def __init__(self,id,username,pic):
         
@@ -484,6 +487,14 @@ def api_register():
             print(user_uid)
             return "user Not in DB"
     else: return render_template("register.html")       
+@app.route('/pokeradar/<game>/<route>/<gen>')
+def pokeradar(game,route,gen):
+    game=str(game)
+    route=str(route)
+    gen=str(gen)
+    data = _pokeradar['games']['gen'][gen]
+    print(data)
+    return 'ok'
 
 @app.route('/api/login',methods=['POST','GET'] )
 def api_login():
