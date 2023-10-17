@@ -4,14 +4,14 @@
 <body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
-<div class="container-fluid !direction !spacing">
+<div class="container !direction !spacing">
 <h1 style="text-align: center;"> {{game_info.name}}-{{clean_data_progess.title}}</h1>    
-<p>{{clean_data_progess}}</p>
-<p>{{game_info}}</p>
+<!-- <p>{{clean_data_progess}}</p> -->
+<!-- <p>{{game_info}}</p> -->
 <div class="row">
 {%if game_info.gen== "gen1" %}
 {%for p in pokedex[100:252]%}
-<div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-3">
+<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-3">
 {% if p['id'] in clean_data_progess.caught %}   
 <div class="card bg-warning" style="width: 10rem;">
 {% else %}

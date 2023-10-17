@@ -492,9 +492,9 @@ def pokeradar(game,route,gen):
     game=str(game)
     route=str(route)
     gen=str(gen)
-    data = _pokeradar['games']['gen'][gen]
+    data = _pokeradar['games']['gen'][gen]["routes"][route]['pokemon']
     print(data)
-    return 'ok'
+    return data
 
 @app.route('/api/login',methods=['POST','GET'] )
 def api_login():
