@@ -11,11 +11,11 @@
 <div class="row">
 {%if game_info.gen== "gen1" %}
 {%for p in pokedex[100:252]%}
-<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+<div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-3">
 {% if p['id'] in clean_data_progess.caught %}   
-<div class="card bg-warning" style="width: 18rem;">
+<div class="card bg-warning" style="width: 10rem;">
 {% else %}
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 10rem;">
 {% endif %}    
     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{p.id}}.png" class="card-img-top" alt="...">
     <div class="card-body">
