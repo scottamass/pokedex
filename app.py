@@ -1,6 +1,6 @@
 import json
 import datetime
-from flask import Flask, jsonify, redirect, request,session , render_template, url_for
+from flask import Flask, Response, jsonify, redirect, request,session , render_template, url_for
 from flask_login import LoginManager, UserMixin, login_required,login_user,current_user, logout_user
 from flask_bcrypt import Bcrypt
 import requests
@@ -368,6 +368,7 @@ def game(id):
 @login_required
 def protected():
     return "you are loged in"
+
 @app.route('/pokemon/<id>')
 def pokemon(id):
     pokeapi_url = f"https://pokeapi.co/api/v2/pokemon/{id}/"
@@ -384,21 +385,31 @@ def pokemon(id):
 
 @app.route('/caught/<gid>/<pid>',methods=['POST'])
 def caught(gid,pid):
+    referring_url = request.headers.get('Referer')
     print(gid)
     pid=int(pid)
     print(pid)
     db.gamepost.game_post.update_one({"_id": ObjectId(gid)},{'$push': {'caught': pid}})
-    return redirect(f'/games/{gid}')
+    return redirect(referring_url)
+
+@app.route('/api/caught/<gid>/<pid>',methods=['POST'])
+def api_caught(gid,pid):
+    print(gid)
+    pid=int(pid)
+    print(pid)
+    db.gamepost.game_post.update_one({"_id": ObjectId(gid)},{'$push': {'caught': pid}})
+    return "ok"
 
 @app.route('/uncaught/<gid>/<pid>',methods=['POST'])
 def uncaught(gid,pid):
+    referring_url = request.headers.get('Referer')
     print(gid)
     pid=int(pid)
     print(pid)
     db.gamepost.game_post.update_one({"_id": ObjectId(gid)},{'$pull': {'caught': pid}})
     
     #return "200"
-    return redirect(f'/games/{gid}')
+    return redirect(referring_url)
 
 @app.route('/api/data_test')    
 def test_data():
@@ -487,14 +498,19 @@ def api_register():
             print(user_uid)
             return "user Not in DB"
     else: return render_template("register.html")       
-@app.route('/pokeradar/<game>/<route>/<gen>')
-def pokeradar(game,route,gen):
+@app.route('/pokeradar/<id>/<gen>/<route>/<game>')
+def pokeradar(id,gen,route,game):
+    games=db.gamepost.game_post.find_one({"_id": ObjectId(id)})
+  
+    caught_array =games['caught']
+    gid= games['_id']
+    print(gid)
     game=str(game)
     route=str(route)
     gen=str(gen)
-    data = _pokeradar['games']['gen'][gen]["routes"][route]['pokemon']
-    print(data)
-    return data
+    data = _pokeradar['games']['gen'][gen]["routes"][route]
+    if gen =="gen1":
+        return render_template('pokeradar/gen1.html',data =data ,game=game ,ca=caught_array ,gid=gid)
 
 @app.route('/api/login',methods=['POST','GET'] )
 def api_login():
@@ -524,4 +540,4 @@ def api_login():
     else: return render_template("login.html")    
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True ,host='0.0.0.0' ,port='80')

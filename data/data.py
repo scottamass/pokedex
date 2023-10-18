@@ -1,10 +1,12 @@
 _pokeradar ={
     "games": {
         "gen": {
-            "1": {
+            "gen1": {
                 "routes": {
                     "route1": {
                         "name": "Route 1",
+                        "north":"veridion-city",
+                        "south":"pallet-town",
                         "pokemon": {
                             "grass": {
                                 "red": [
@@ -56,6 +58,7 @@ _pokeradar ={
                     },
                     "route2": {
                         "name": "Route 2",
+                        
                         "pokemon": {
                             "grass": {
                                 "red": [

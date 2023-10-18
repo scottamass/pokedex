@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
+    test
+
+
+{{data}}
+
+
+<h1>{{data.name}}</h1>
+<h2>{{game}}</h2>
+{{ca}}
+<table>
+    <th>Pokemon</th><th>enconter rate</th><th>caught</th>
+    {% for p in data.pokemon.grass[game]%}
+    <tr>
+        <td>
+            {{p.name}}
+        </td>
+        <td>
+            {{p.encounter}}
+        </td>
+        <td>{% if p.id in ca%}
+            Y
+            {%else %}
+            N
+            {%endif%}
+        </td>
+        <td>{% if p['id'] in ca %} 
+            <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
+              <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+            <button type="submit" class="btn btn-primary">uncaught</button>
+          </form>
+            {% else %}
+            <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
+              <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+            <button type="submit" class="btn btn-primary">caught</button>
+          </form>
+          {% endif %} </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
