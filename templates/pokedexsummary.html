@@ -7,12 +7,11 @@
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 <div class="container !direction !spacing">
 <h1 style="text-align: center;"> {{game_info.name}}-{{clean_data_progess.title}}</h1>    
-<!-- <p>{{clean_data_progess}}</p> 
-<p>{{game_info}}</p> -->
+<p>{{clean_data_progess}}</p> 
+<p>{{game_info}}</p>
 <!-- <a href="/pokeradar/{{clean_data_progess._id}}/{{game_info.gen}}/route1/{{game_info.name}}">navigate to route 1</a> -->
 <div class="row">
-{%if game_info.gen== "gen1" %}
-{%for p in pokedex[100:252]%}
+{%for p in pokedex %}
 <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-3">
 {% if p['id'] in clean_data_progess.caught %}   
 <div class="card bg-warning" style="width: 10rem;">
@@ -37,33 +36,7 @@
   </div>
 </div>
 {% endfor %}
-{% else %}
-{%for p in pokedex%}
-<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-{% if p['id'] in clean_data_progess.caught %}   
-<div class="card bg-warning" style="width: 18rem;">
-{% else %}
-<div class="card" style="width: 18rem;">
-{% endif %}    
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{p.id}}.png" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{p.name}}</h5>
-      {% if p['id'] in clean_data_progess.caught %} 
-      <form action="/uncaught/{{clean_data_progess._id}}/{{p.id}}" method="POST">
-        <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-      <button type="submit" class="btn btn-primary">uncaught</button>
-    </form>
-      {% else %}
-      <form action="/caught/{{clean_data_progess._id}}/{{p.id}}" method="POST">
-        <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-      <button type="submit" class="btn btn-primary">caught</button>
-    </form>
-    {% endif %} 
-    </div>
-  </div>
-</div>
-{% endfor %}
-{%endif%}
+
 </div>
 </div>
 
