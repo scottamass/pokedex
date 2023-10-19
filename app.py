@@ -5,14 +5,10 @@ from flask_login import LoginManager, UserMixin, login_required,login_user,curre
 from flask_bcrypt import Bcrypt
 import requests
 from data.data import _pokeradar
-
-
 from pymongo import DESCENDING, MongoClient
 from bson import json_util,ObjectId
 import os
-mongo_user=os.getenv('MONGO_USER')
-mongo_password=os.getenv('MONGO_PASSWORD')
-mongo_address=os.getenv('MONGO_ADDRESS')
+
 mongo_connect=os.getenv('M_CONNECTION_STRING')
 print(f'connection--{mongo_connect}')
 db= MongoClient(mongo_connect)
@@ -363,8 +359,13 @@ def game(id):
     print(clean_data_progess)
     game_info= db.Games.games_list.find_one({'gid':clean_data_progess['game']})
     print(game_info)
-
-    return render_template('pokedexsummary.html',clean_data_progess=clean_data_progess,game_info=game_info, pokedex=pokedex)
+    if game_info['gen'] == 'gen1':
+        print('yes')
+        dex = pokedex[100:252]
+    else:
+        print('no')
+        dex = pokedex
+    return render_template('pokedexsummary.html',clean_data_progess=clean_data_progess,game_info=game_info, pokedex=dex)
 
 @app.route('/protected')
 @login_required
