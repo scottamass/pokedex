@@ -14,7 +14,7 @@ mongo_user=os.getenv('MONGO_USER')
 mongo_password=os.getenv('MONGO_PASSWORD')
 mongo_address=os.getenv('MONGO_ADDRESS')
 mongo_connect=os.getenv('M_CONNECTION_STRING')
-
+print(f'connection--{mongo_connect}')
 db= MongoClient(mongo_connect)
 print(db)
 pokedex = [
