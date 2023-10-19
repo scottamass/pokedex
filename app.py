@@ -13,8 +13,10 @@ import os
 mongo_user=os.getenv('MONGO_USER')
 mongo_password=os.getenv('MONGO_PASSWORD')
 mongo_address=os.getenv('MONGO_ADDRESS')
+mongo_connect=os.getenv('M_CONNECTION_STRING')
 
-db= MongoClient(f'mongodb://{mongo_user}:{mongo_password}@{mongo_address}:27017')
+db= MongoClient(mongo_connect)
+print(db)
 pokedex = [
     { "id": 152, "name": "Chikorita" },
     { "id": 153, "name": "Bayleef" },
@@ -325,9 +327,9 @@ def index():
     games_list=[]
     games=db.gamepost.game_post.find({"poster_id": current_user.id}).sort('posted_date',DESCENDING)
     for g in games:
-        
+        print(current_user.id)
         game_data = db.Games.games_list.find_one({'gid':g['game']})
-        #print(game_data)
+        print(game_data)
         post_id_str = str(g['_id']) 
         games={'postid':post_id_str,"title":g['title'],'gid':game_data['gid'],'gname':game_data['name'],'imgurl':game_data['image']}
         print(games)
