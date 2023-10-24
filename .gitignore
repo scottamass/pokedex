@@ -1,2 +1,15 @@
 *.pyc
 .env
+*.wt
+
+data/mongod.lock
+data/storage.bson
+data/WiredTiger
+data/WiredTiger.lock
+data/WiredTiger.turtle
+data/diagnostic.data/metrics.2023-10-20T09-51-54Z-00000
+data/journal/WiredTigerLog.0000000001
+data/journal/WiredTigerPreplog.0000000002
+
+.gitignore
+data/journal/WiredTigerPreplog.0000000001

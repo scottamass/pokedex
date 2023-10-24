@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  flask-app:
+    build:
+      context: .  # Use the current directory as the build context
+      dockerfile: dockerfile # Use the production Dockerfile
+    environment:
+      - M_CONNECTION_STRING=mongodb://mongo:27017/my_database  # MongoDB connection string
+      - SECRET_KEY=secret-key
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest  # Use the official MongoDB image
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db  # Persist data to the host machine
+
+volumes:
+  data:

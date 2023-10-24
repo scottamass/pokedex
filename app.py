@@ -47,7 +47,8 @@ def unauthenticated():
 @login_manager.user_loader
 def load_user(user_id):
     u= db.userProfiles.userProfiles.find_one({'_id':ObjectId(user_id)})
-    return User(id=u['_id'],username=u['username'],pic=u['profilePic'])
+    if u is not None:
+        return User(id=u['_id'],username=u['username'],pic=u['profilePic'])
 
 login_manager.init_app(app)
 
@@ -64,6 +65,7 @@ def index():
         post_id_str = str(g['_id']) 
         games={'postid':post_id_str,"title":g['title'],'gid':game_data['gid'],'gname':game_data['name'],'imgurl':game_data['image']}
         games_list.append(games)
+    print(games_list)    
     return render_template ("index.html", games_list=games_list)
 
 @app.route('/api/postgame', methods=['POST'])
@@ -80,13 +82,14 @@ def post_game():
 @app.route('/games/<id>')
 @login_required
 def game(id):
+    games_list=get_games_from_db(current_user.id)
     clean_data_progess=get_game_from_db(id)
     game_info= db.Games.games_list.find_one({'gid':clean_data_progess['game']})
     if game_info['gen'] == 'gen1':
         dex = _gen1Dex
     else:
         dex = _gen2pokedex
-    return render_template('pokedexsummary.html',clean_data_progess=clean_data_progess,game_info=game_info, pokedex=dex)
+    return render_template('pokedexsummary.html',clean_data_progess=clean_data_progess,game_info=game_info, pokedex=dex,games_list=games_list)
 
 @app.route('/caught/<gid>/<pid>',methods=['POST'])
 def caught(gid,pid):
