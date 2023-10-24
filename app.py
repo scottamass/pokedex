@@ -123,6 +123,9 @@ def pokeradar(id,gen,route,game):
     data = _pokeradar['games']['gen'][gen]["routes"][route]
     if gen =="gen1":
         return render_template('pokeradar/gen1.html',data =data ,game=game ,ca=caught_array ,gid=gid)
+    if gen =="gen2":
+        return render_template('pokeradar/gen1.html',data =data ,game=game ,ca=caught_array ,gid=gid)
+    
 
 @app.route('/register', methods=['GET','POST'])
 def register():
