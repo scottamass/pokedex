@@ -11,6 +11,7 @@ from data.pokedex.gen1 import _gen1Dex
 from data.pokedex.gen2 import _gen2pokedex
 from functions.dbfunc import catch_or_uncatch_poke, get_game_from_db, get_games_from_db, post_game_to_db
 
+
 mongo_connect=os.getenv('M_CONNECTION_STRING')
 db= MongoClient(mongo_connect)
 

@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+
+  mongo:
+    image: mongo:latest  # Use the official MongoDB image
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db  # Persist data to the host machine
   flask-app:
     build:
       context: .  # Use the current directory as the build context
@@ -12,13 +19,6 @@ services:
       - "8000:8000"
     depends_on:
       - mongo
-
-  mongo:
-    image: mongo:latest  # Use the official MongoDB image
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./data:/data/db  # Persist data to the host machine
 
 volumes:
   data:

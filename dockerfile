@@ -19,6 +19,8 @@ COPY . /app/
 # Expose the port that Gunicorn will listen on
 EXPOSE 8000
 
+
+
 # Command to run Gunicorn in production
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
 

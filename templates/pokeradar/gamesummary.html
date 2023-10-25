@@ -6,16 +6,16 @@
 
 <div style="background-color: gray; border-radius:10px" class="container !direction !spacing pb-5">
  
-  
-  <h1></h1>
-</hr>
+
 <div class="row mx-auto ">
   <div class="col col-sm-12 col-md-6 col-lg-3 pb-3 text-center" style="background-color: #589c59; border-radius: 10px;">
     <section class="inner">
       <p style="margin-bottom: 1px;">Kanto</p>
-      <h2>Pokemon {{}}</h2>
+      <h2>Pokemon {{game_info.name}}</h2>
+    </section >
+    <section class="inner">
+      <img width="90%" src="{{game_info.image}}" alt="Pokemon Red">
     </section>
-
   <section class="inner">
   <div class="row">
     <h5>startring route</h5>
@@ -31,8 +31,19 @@
    <section>
        <h5> game_info</h5>
        {{game_info}}
-    <h5>pokedex</h5>
-    {{pokedex}}
+    <!-- <h5>pokedex</h5>
+    {{pokedex}} -->
+   </section>
+   <section>
+    <h5>Caught</h5>
+    {{clean_data_progess.caught}}
+    <div class="row">
+    {% for c in clean_data_progess.caught %}
+    <div class="col col-sm-6 col-md-3 col-lg-1">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{c}}.png">
+  </div>
+    {% endfor %}
+  </div>
    </section>         
       </div>
      
