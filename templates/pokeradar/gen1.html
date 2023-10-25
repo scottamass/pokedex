@@ -3,133 +3,169 @@
 {% include "nav.html" %}
 
 
-{{data}}
 
-
-<h1>{{data.name}}</h1>
-<h2>{{game}}</h2>
-{{ca}}
-<div class="row">
-  <div class="col col-sm-12 col-md-6 col-lg-3" style="background-color: green;">
-    <section><h2>{{data.name}}</h2></section>
-    <section><div><h2>map</h2>
-    </div>
-  <div>
-    <img src="static/routes/Kanto_Route_1_RBY.png">
-  </div>
-  </section>
-      <div class="row">
-        <h5>Connecting locations </h5>
-        <div class="row mx-auto allign-center" >
-          <div class="col-4"></div>
-          <div class="col-4">N <br> {{data.north}}</div>
-          <div class="col-4"></div>
-          <div class="col-4">E</div>
-          <div class="col-4">{{data.name}}</div>
-          <div class="col-4">W</div>
-          <div class="col-4"></div>
-          <div class="col-4">S {{data.south}}</div>
-          <div class="col-4"></div>
-        </div>
-      </div>
-  </div>
-  <div class="col col-sm-12 col-md-6 col-lg-9 ">
-    
+<div style="background-color: gray; border-radius:10px" class="container !direction !spacing pb-5">
+ 
   
-
-<table>
-    <th>Pokemon</th><th>enconter rate</th><th>caught</th>
+  <h1>{{data.name}} - Pokemon {{game[0].upper()}}{{game[1:]}}</h1>
+</hr>
+<div class="row mx-auto ">
+  <div class="col col-sm-12 col-md-6 col-lg-3 pb-3 text-center" style="background-color: #589c59; border-radius: 10px;">
+    <section class="inner">
+      <p style="margin-bottom: 1px;">Kanto</p>
+      <h2>{{data.name}}</h2>
+    </section>
+    <section class="inner"><div><h2>map</h2>
+    </div>
+    <div class="mx-auto">
+      <img class="mx-auto" width="80%" src="{{ url_for('static', filename='routes/Kanto_Route_1_RBY.png' )}}">
+    </div>
+  </section>
+  <section class="inner">
+  <div class="row">
+    <h5>Connecting locations </h5>
+    <div class="row mx-auto allign-center" >
+      <div class="col-4"></div>
+      <div class="col-4">N <br> {{data.north}}</div>
+      <div class="col-4"></div>
+      <div class="col-4">E</div>
+      <div class="col-4">{{data.name}}</div>
+      <div class="col-4">W</div>
+      <div class="col-4"></div>
+      <div class="col-4">S {{data.south}}</div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="col col-sm-12 col-md-6 col-lg-9 ">
+  <h2>Pokemon Encounters</h2>  
+  
+  
+  <table style="border: 2px solid #4AA14D; background: #75C977; margin-right: 5px; margin-bottom: 5px;" cellspacing="2" cellpadding="4">
+    <th class="tbg">Pokemon</th><th class="tbg">enconter rate</th><th class="tbg">location type</th><th colspan="2" class="tbg">caught</th>
     {% for p in data.pokemon.grass[game]%}
     <tr>
+      <td>
+        {{p.name}}
+      </td>
+      <td>
+        {{p.encounter}}
+      </td>
+      <td>Grass</td>
+      <td>{% if p.id in ca%}
+        Y
+        {%else %}
+        N
+        {%endif%}
+      </td>
+      <td>{% if p['id'] in ca %} 
+        <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
+          <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+          <button type="submit" class="btn btn-primary">uncaught</button>
+        </form>
+        {% else %}
+        <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
+          <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+          <button type="submit" class="btn btn-primary">caught</button>
+        </form>
+        {% endif %} </td>
+      </tr>
+      {% endfor %}
+   
+    
+    
+    {% if data.pokemon.fishing != None %}
+    <tr>
+    <th class="tbgw text-center" colspan="5">Fishing</th>
+  </tr>  
+    <th class="tbgw">Pokemon</th><th class="tbgw">enconter rate</th><th class="tbgw">rod Type</th><th class="tbgw" colspan="2">caught</th>
+      {% for p in data.pokemon.fishing.oldrod[game]%}
+      <tr>
         <td>
-            {{p.name}}
+          {{p.name}}
         </td>
         <td>
-            {{p.encounter}}
+          {{p.encounter}}
         </td>
+        <td>old rod</td>
         <td>{% if p.id in ca%}
+          Y
+          {%else %}
+          N
+          {%endif%}
+        </td>
+        <td>{% if p['id'] in ca %} 
+          <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
+            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+            <button type="submit" class="btn btn-primary">uncaught</button>
+          </form>
+          {% else %}
+          <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
+            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
+            <button type="submit" class="btn btn-primary">caught</button>
+          </form>
+          {% endif %} </td>
+        </tr>
+        {% endfor %}
+        {% for p in data.pokemon.fishing.goodrod[game]%}
+        <tr>
+          <td>
+            {{p.name}}
+          </td>
+          <td>
+            {{p.encounter}}
+          </td>
+          <td>Good Rod</td>
+          <td>{% if p.id in ca%}
             Y
             {%else %}
             N
             {%endif%}
-        </td>
-        <td>{% if p['id'] in ca %} 
+          </td>
+          <td>{% if p['id'] in ca %} 
             <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
               <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-            <button type="submit" class="btn btn-primary">uncaught</button>
-          </form>
+              <button type="submit" class="btn btn-primary">uncaught</button>
+            </form>
             {% else %}
             <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
               <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-            <button type="submit" class="btn btn-primary">caught</button>
-          </form>
-          {% endif %} </td>
-    </tr>
-    {% endfor %}
-</table>
+              <button type="submit" class="btn btn-primary">caught</button>
+            </form>
+            {% endif %} </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <style>
+    .inner {background-color: #75C977;
+    margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #ce991e;
+padding: 4px;}
 
 
-{% if data.pokemon.fishing != None %}
-<table>
-  <th>Pokemon</th><th>enconter rate</th><th>rod Type</th><th>caught</th>
-  {% for p in data.pokemon.fishing.oldrod[game]%}
-  <tr>
-      <td>
-          {{p.name}}
-      </td>
-      <td>
-          {{p.encounter}}
-      </td>
-      <td>old rod</td>
-      <td>{% if p.id in ca%}
-          Y
-          {%else %}
-          N
-          {%endif%}
-      </td>
-      <td>{% if p['id'] in ca %} 
-          <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
-            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-          <button type="submit" class="btn btn-primary">uncaught</button>
-        </form>
-          {% else %}
-          <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
-            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-          <button type="submit" class="btn btn-primary">caught</button>
-        </form>
-        {% endif %} </td>
-  </tr>
-  {% endfor %}
-  {% for p in data.pokemon.fishing.goodrod[game]%}
-  <tr>
-      <td>
-          {{p.name}}
-      </td>
-      <td>
-          {{p.encounter}}
-      </td>
-      <td>Good Rod</td>
-      <td>{% if p.id in ca%}
-          Y
-          {%else %}
-          N
-          {%endif%}
-      </td>
-      <td>{% if p['id'] in ca %} 
-          <form action="/uncaught/{{gid}}/{{p.id}}" method="POST" >
-            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-          <button type="submit" class="btn btn-primary">uncaught</button>
-        </form>
-          {% else %}
-          <form action="/caught/{{gid}}/{{p.id}}" method="POST" >
-            <input type="hidden" name="next" value="{{request.args.get('next')}}" />
-          <button type="submit" class="btn btn-primary">caught</button>
-        </form>
-        {% endif %} </td>
-  </tr>
-  {% endfor %}
-</table>
-</div>
-{% endif %}
-</div>
-{% endblock %}
+.container img {
+  display: block; /* This removes extra space under the image */
+  margin: 0 auto;  /* Center the image horizontally */
+}
+
+
+table{border: 5px solid #2f2d80; background: #75C977; margin-right: 5px; margin-bottom: 5px;}
+table, th, td {
+  border: 2px solid #4AA14D;
+}
+.tbg{
+  background: #A2E0A3; color:#000000;
+}
+
+.tbgw{
+  background: #9DB7F5; color: #000000}
+td{background: white;}
+  </style>
+    {% endblock %}
+    
