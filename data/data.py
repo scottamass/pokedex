@@ -2,6 +2,12 @@ _pokeradar = {
     "games": {
         "gen": {
             "gen1": {
+                "trade":[
+                    {"id": 65, "name": "Alakazam"},
+                    {"id": 68, "name": "Machamp"},
+                    {"id": 76, "name": "Golem"},
+                    {"id": 94, "name": "Gengar"},
+                ],
                 "unobtainable": {
                     "red": [
                         {"id": 27, "name": "Sandshrew"},
