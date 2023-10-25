@@ -116,15 +116,17 @@ def pokeradar(id,gen,route,game):
     games=get_game_from_db(id)
     caught_array =games['caught']
     gid= games['_id']
+    game_info= db.Games.games_list.find_one({'gid':games['game']})
     print(gid)
     game=str(game)
     route=str(route)
     gen=str(gen)
     data = _pokeradar['games']['gen'][gen]["routes"][route]
+    games_list=get_games_from_db(current_user.id)
     if gen =="gen1":
-        return render_template('pokeradar/gen1.html',data =data ,game=game ,ca=caught_array ,gid=gid)
+        return render_template('pokeradar/gen1.html',data =data ,game=game,clean_data_progess=games ,ca=caught_array,game_info=game_info ,gid=gid,games_list=games_list)
     if gen =="gen2":
-        return render_template('pokeradar/gen1.html',data =data ,game=game ,ca=caught_array ,gid=gid)
+        return render_template('pokeradar/gen1.html',data =data ,game=game,clean_data_progess=games ,ca=caught_array ,gid=gid,game_info=game_info,games_list=games_list)
     
 
 @app.route('/register', methods=['GET','POST'])

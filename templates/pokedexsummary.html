@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% include "nav.html" %}
+
 {% block content %}
+{% include "nav.html" %}
 <div class="container !direction !spacing">
 <h1 style="text-align: center;"> {{game_info.name}}-{{clean_data_progess.title}}</h1>
 {% if game_info.gen == 'gen1'%}    
