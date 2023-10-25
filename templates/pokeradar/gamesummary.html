@@ -36,9 +36,9 @@
    </section>
    <section>
     <h5>Caught</h5>
-    {{clean_data_progess.caught}}
+    {{clean_data_progess.caught|sort}}
     <div class="row">
-    {% for c in clean_data_progess.caught %}
+    {% for c in clean_data_progess.caught|sort %}
     <div class="col col-sm-6 col-md-3 col-lg-1">
     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{c}}.png">
   </div>
