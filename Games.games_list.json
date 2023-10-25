@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "6526ac2e34589f12a1a09283"
+  },
+  "name": "crystal",
+  "image": "https://assets-prd.ignimgs.com/2021/12/14/pokemoncrystal-1639519080473.jpg",
+  "gid": "1",
+  "gen": "gen2",
+  "max": 251
+},
+{
+  "_id": {
+    "$oid": "6526c93734589f12a1a09291"
+  },
+  "name": "red",
+  "image": "https://m.media-amazon.com/images/M/MV5BYTRlNjQ1NGMtNmU1Ny00MmRkLWE2NzQtMWUzNDc2ZWI2YWE2XkEyXkFqcGdeQXVyMzM4MjM0Nzg@._V1_.jpg",
+  "gid": "2",
+  "gen": "gen1",
+  "max": 151
+},
+{
+  "_id": {
+    "$oid": "6526c98334589f12a1a09292"
+  },
+  "name": "yellow",
+  "image": "https://m.media-amazon.com/images/M/MV5BYTQ2ZDkyYTMtMDVjYy00OGI2LTkxZTYtN2UzYjk3YmVkZGUxXkEyXkFqcGdeQXVyMzM4MjM0Nzg@._V1_.jpg",
+  "gid": "3",
+  "gen": "gen1",
+  "max": 151
+}]

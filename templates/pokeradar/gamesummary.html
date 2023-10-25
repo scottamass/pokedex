@@ -1,0 +1,68 @@
+{% extends "base.html"%}
+{% block content %}
+{% include "nav.html" %}
+
+
+
+<div style="background-color: gray; border-radius:10px" class="container !direction !spacing pb-5">
+ 
+  
+  <h1></h1>
+</hr>
+<div class="row mx-auto ">
+  <div class="col col-sm-12 col-md-6 col-lg-3 pb-3 text-center" style="background-color: #589c59; border-radius: 10px;">
+    <section class="inner">
+      <p style="margin-bottom: 1px;">Kanto</p>
+      <h2>Pokemon {{}}</h2>
+    </section>
+
+  <section class="inner">
+  <div class="row">
+    <h5>startring route</h5>
+    <a href="#">Route 1</a>
+    <div class="row mx-auto allign-center" >
+
+    </div>
+  </div>
+</section>
+</div>
+<div class="col col-sm-12 col-md-6 col-lg-9 ">
+  <h2></h2>  
+   <section>
+       <h5> game_info</h5>
+       {{game_info}}
+    <h5>pokedex</h5>
+    {{pokedex}}
+   </section>         
+      </div>
+     
+    </div>
+  </div>
+  <style>
+    .inner {background-color: #75C977;
+    margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #ce991e;
+padding: 4px;}
+
+
+.container img {
+  display: block; /* This removes extra space under the image */
+  margin: 0 auto;  /* Center the image horizontally */
+}
+
+
+table{border: 5px solid #2f2d80; background: #75C977; margin-right: 5px; margin-bottom: 5px;}
+table, th, td {
+  border: 2px solid #4AA14D;
+}
+.tbg{
+  background: #A2E0A3; color:#000000;
+}
+
+.tbgw{
+  background: #9DB7F5; color: #000000}
+td{background: white;}
+  </style>
+    {% endblock %}
+    

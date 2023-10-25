@@ -91,6 +91,17 @@ def game(id):
         dex = _gen2pokedex
     return render_template('pokedexsummary.html',clean_data_progess=clean_data_progess,game_info=game_info, pokedex=dex,games_list=games_list)
 
+@app.route('/gamesummary/<id>')
+@login_required
+def game_summary(id):
+    games_list=get_games_from_db(current_user.id)
+    clean_data_progess=get_game_from_db(id)
+    game_info= db.Games.games_list.find_one({'gid':clean_data_progess['game']})
+    if game_info['gen'] == 'gen1':
+        dex = _gen1Dex
+    return render_template('pokeradar/gamesummary.html',games_list=games_list ,clean_data_progess=clean_data_progess,game_info=game_info, pokedex=dex)
+
+
 @app.route('/caught/<gid>/<pid>',methods=['POST'])
 def caught(gid,pid):
     referring_url = request.headers.get('Referer')
