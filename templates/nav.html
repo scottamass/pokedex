@@ -19,9 +19,13 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% for g in games_list %}
-                
+                {% if g.game == "2" or g.game == "3" %}
+                <li><a class="dropdown-item" href="/gamesummary/{{g._id}}">{% if g.game=="2" %}Red{% endif %}{% if g.game=="3" %}Yellow{% endif %}{% if g.game=="1" %}crystal{% endif %}-{{g.title}}
+                </a></li>
+                {% else %}
                 <li><a class="dropdown-item" href="/games/{{g._id}}">{% if g.game=="2" %}Red{% endif %}{% if g.game=="3" %}Yellow{% endif %}{% if g.game=="1" %}crystal{% endif %}-{{g.title}}
                 </a></li>
+                {% endif %}
                 {% endfor %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">current game:</a></li>
