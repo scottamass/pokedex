@@ -5,10 +5,8 @@
 <div class="container !direction !spacing">
 <h1 style="text-align: center;"> {{game_info.name}}-{{clean_data_progess.title}}</h1>
 {% if game_info.gen == 'gen1'%}    
-<a href="/pokeradar/{{clean_data_progess._id}}/{{game_info.gen}}/route1/{{game_info.name}}">navigate to route 1</a>
 {%endif%}
 {% if game_info.gen == 'gen2'%}    
-<a href="/pokeradar/{{clean_data_progess._id}}/{{game_info.gen}}/route1/{{game_info.name}}">navigate to route 28</a>
 {%endif%}
 <div class="row">
 {%for p in pokedex %}

@@ -59,15 +59,15 @@ def parse_json(data):
 @app.route('/')
 @login_required
 def index():
-    games_list=[]
+    games_list_list=[]
     games=get_games_from_db(current_user.id)
+    games=list(games)
     for g in games:
         game_data = db.Games.games_list.find_one({'gid':g['game']})
         post_id_str = str(g['_id']) 
-        games={'postid':post_id_str,"title":g['title'],'gid':game_data['gid'],'gname':game_data['name'],'imgurl':game_data['image']}
-        games_list.append(games)
-    print(games_list)    
-    return render_template ("index.html", games_list=games_list)
+        gamesdir={'postid':post_id_str,"title":g['title'],'gid':game_data['gid'],'gname':game_data['name'],'imgurl':game_data['image']}
+        games_list_list.append(gamesdir)  
+    return render_template ("index.html", games_l=games_list_list, games_list=games)
 
 @app.route('/api/postgame', methods=['POST'])
 @login_required
@@ -124,22 +124,21 @@ def uncaught(gid,pid):
     catch_or_uncatch_poke(gid,pid,'$pull')
     return redirect(referring_url)
 
-@app.route('/pokeradar/<id>/<gen>/<route>/<game>')
-def pokeradar(id,gen,route,game):
+@app.route('/pokeradar/<id>/<gen>/<route>')
+def pokeradar(id,gen,route):
     games=get_game_from_db(id)
     caught_array =games['caught']
     gid= games['_id']
     game_info= db.Games.games_list.find_one({'gid':games['game']})
     print(gid)
-    game=str(game)
     route=str(route)
     gen=str(gen)
     data = _pokeradar['games']['gen'][gen]["routes"][route]
     games_list=get_games_from_db(current_user.id)
     if gen =="gen1":
-        return render_template('pokeradar/gen1.html',data =data ,game=game,clean_data_progess=games ,ca=caught_array,game_info=game_info ,gid=gid,games_list=games_list)
+        return render_template('pokeradar/gen1.html',data =data ,clean_data_progess=games ,ca=caught_array,game_info=game_info ,gid=gid,games_list=games_list)
     if gen =="gen2":
-        return render_template('pokeradar/gen1.html',data =data ,game=game,clean_data_progess=games ,ca=caught_array ,gid=gid,game_info=game_info,games_list=games_list)
+        return render_template('pokeradar/gen1.html',data =data ,clean_data_progess=games ,ca=caught_array ,gid=gid,game_info=game_info,games_list=games_list)
     
 
 @app.route('/register', methods=['GET','POST'])

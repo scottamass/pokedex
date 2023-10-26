@@ -5,9 +5,7 @@
 
 
 <div style="background-color: gray; border-radius:10px" class="container !direction !spacing pb-5">
- 
-  
-  <h1>{{data.name}} - Pokemon {{game[0].upper()}}{{game[1:]}}</h1>
+  <h1>{{data.name}} - Pokemon {{game_info.name[0].upper()}}{{game_info.name[1:]}}</h1>
 </hr>
 <div class="row mx-auto ">
   <div class="col col-sm-12 col-md-6 col-lg-3 pb-3 text-center" style="background-color: #589c59; border-radius: 10px;">
@@ -41,10 +39,10 @@
 <div class="col col-sm-12 col-md-6 col-lg-9 ">
   <h2>Pokemon Encounters</h2>  
   
-  
+  <div class="table-container">
   <table style="border: 2px solid #4AA14D; background: #75C977; margin-right: 5px; margin-bottom: 5px;" cellspacing="2" cellpadding="4">
     <th class="tbg">Pokemon</th><th class="tbg">enconter rate</th><th class="tbg">location type</th><th colspan="2" class="tbg">caught</th>
-    {% for p in data.pokemon.grass[game]%}
+    {% for p in data.pokemon.grass[game_info.name]%}
     <tr>
       <td>
         {{p.name}}
@@ -80,7 +78,7 @@
     <th class="tbgw text-center" colspan="5">Fishing</th>
   </tr>  
     <th class="tbgw">Pokemon</th><th class="tbgw">enconter rate</th><th class="tbgw">rod Type</th><th class="tbgw" colspan="2">caught</th>
-      {% for p in data.pokemon.fishing.oldrod[game]%}
+      {% for p in data.pokemon.fishing.oldrod[game_info.name]%}
       <tr>
         <td>
           {{p.name}}
@@ -136,9 +134,11 @@
             {% endif %} </td>
           </tr>
           {% endfor %}
-        </table>
-      </div>
-      {% endif %}
+        </div>
+        {% endif %}
+      </table>
+    </div>
+      {% include "pokeradar/partialGenoneLocations.html" %}
     </div>
   </div>
   <style>
@@ -153,9 +153,13 @@ padding: 4px;}
   display: block; /* This removes extra space under the image */
   margin: 0 auto;  /* Center the image horizontally */
 }
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 100%;  /* Ensure the table doesn't extend beyond its container */
+}
 
 
-table{border: 5px solid #2f2d80; background: #75C977; margin-right: 5px; margin-bottom: 5px;}
+table{border: 5px solid #2f2d80; background: #75C977; margin-right: 5px; margin-bottom: 5px; overflow-y: scroll;}
 table, th, td {
   border: 2px solid #4AA14D;
 }
