@@ -189,10 +189,7 @@ def api_register():
     if request.method == 'POST':
         user=request.json["email"]
         pw=request.json["password"]
-        #user = request.form ['username']
-        #pw= request.form ['pwd']
         print(user)
-        #user_exists = db.loginUsers.created_users.find_one({"email":user})
         if db.loginUsers.created_users.find_one({"email":user}):
             return "user in db"
         else: 
