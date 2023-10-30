@@ -54,6 +54,7 @@ _pokeradar = {
                 "routes": {
                     "route1": {
                         "name": "Route 1",
+                        "no":"Kanto_Route_1_RBY",
                         "north": "veridion-city",
                         "south": "pallet-town",
                         "pokemon": {
@@ -77,6 +78,7 @@ _pokeradar = {
                     },
                     "route2": {
                         "name": "Route 2",
+                        "no":"Kanto_Route_2_RBY",
                         "pokemon": {
                             "grass": {
                                 "red": [
@@ -102,6 +104,7 @@ _pokeradar = {
                     },
                     "route3": {
                         "name": "Route 3",
+                        "no":"Route_3",
                         "pokemon": {
                             "grass": {
                                 "red": [
@@ -127,6 +130,7 @@ _pokeradar = {
                     },
                     "route4": {
                         "name": "Route 4",
+                        "no":"Route_4",
                         "pokemon": {
                             "grass": {
                                 "red": [
@@ -147,6 +151,198 @@ _pokeradar = {
                                 ]
                             },
                             "surfing": None,
+                             "fishing": {
+                                "oldrod": {
+                                    "red": [
+                                        {
+                                            "id": 129,
+                                            "name": "Magikarp",
+                                            "encounter": "100%",
+                                            "level": "5"
+                                        }
+                                    ],
+                                    "blue": [
+                                        {
+                                            "id": 129,
+                                            "name": "Magikarp",
+                                            "encounter": "100%",
+                                            "level": "5"
+                                        }
+                                    ],
+                                    "yellow": [
+                                        {
+                                            "id": 129,
+                                            "name": "Magikarp",
+                                            "encounter": "100%",
+                                            "level": "5"
+                                        }
+                                    ]
+                                },
+                                "goodrod": {
+                                    "red": [
+                                        {
+                                            "id": 60,
+                                            "name": "poliwag",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        },
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        }
+                                    ],
+                                    "blue": [
+                                        {
+                                            "id": 60,
+                                            "name": "poliwag",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        },
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        }
+                                    ],
+                                    "yellow": [
+                                        {
+                                            "id": 60,
+                                            "name": "poliwag",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        },
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "50%",
+                                            "level": "10"
+                                        }
+                                    ]
+                                },
+                                "superrod": {
+                                    "red": [
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        },
+                                        {
+                                            "id": 54,
+                                            "name": "Psyduck",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        },
+                                        {
+                                            "id": 54,
+                                            "name": "Krabby",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        }
+                                    ],
+                                    "blue": [
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        },
+                                        {
+                                            "id": 54,
+                                            "name": "Psyduck",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        },
+                                        {
+                                            "id": 54,
+                                            "name": "Krabby",
+                                            "encounter": "33%",
+                                            "level": "15"
+                                        }
+                                    ],
+                                    "yellow": [
+                                        {
+                                            "id": 118,
+                                            "name": "Goldeen",
+                                            "encounter": "95%",
+                                            "level": "20,25,30"
+                                        },
+                                        {
+                                            "id": 119,
+                                            "name": "Seaking",
+                                            "encounter": "5%",
+                                            "level": "30"
+                                        }
+                                    ]
+                                }
+                            }
+                               
+                    },},
+                    "route5":{
+                        "name": "Route 5",
+                        "no":"Route_5",
+                              "pokemon":{
+                                  "grass":{
+                                      "red": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "13,15-16"},
+                                    {"id": 43, "name": "oddish", "encounter": "35%", "level": "13,15-16"},
+                                    {"id": 29, "name": "Mankey", "encounter": "25%", "level": "10,12,14,16"},
+                                    {"id": 39, "name": "Jigglypuff", "encounter": "10%", "level": "3,5,7"}
+                                ],
+                                "blue": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "13,15-16"},
+                                    {"id": 52, "name": "meowth", "encounter": "40%", "level": "10,12,14,16"},
+                                    {"id": 52, "name": "Bellsprout", "encounter": "40%", "level": "13,15-16"}
+                                    
+                                ],
+                                "yellow": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "15-17"},
+                                    {"id": 17, "name": "pidgeotto", "encounter": "5%", "level": "17"},
+                                    {"id": 19, "name": "Rattata", "encounter": "30%", "level": "14-16"},
+                                    {"id": 39, "name": "Jigglypuff", "encounter": "10%", "level": "3,5,7"},
+                                    {"id": 63, "name": "Abra", "encounter": "15%", "level": "7"}
+                                
+                                ],                                
+                            },
+                            "surfing":None,
+                            "fishing":None,
+                                }
+                                }
+                ,                    
+                    "route6": {
+                        "name": "Route 6",
+                        "no":"Route_6",
+                        "pokemon": {
+                            "grass": {
+                                "red": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "13,15-16"},
+                                    {"id": 43, "name": "oddish", "encounter": "35%", "level": "13,15-16"},
+                                    {"id": 29, "name": "Mankey", "encounter": "25%", "level": "10,12,14,16"},
+                                    {"id": 39, "name": "Jigglypuff", "encounter": "10%", "level": "3,5,7"}
+                                ],
+                                "blue": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "13,15-16"},
+                                    {"id": 52, "name": "meowth", "encounter": "40%", "level": "10,12,14,16"},
+                                    {"id": 52, "name": "Bellsprout", "encounter": "40%", "level": "13,15-16"}
+                                    
+                                ],
+                                "yellow": [
+                                    {"id": 16, "name": "pidgey", "encounter": "40%", "level": "15-17"},
+                                    {"id": 17, "name": "pidgeotto", "encounter": "5%", "level": "17"},
+                                    {"id": 19, "name": "Rattata", "encounter": "30%", "level": "14-16"},
+                                    {"id": 39, "name": "Jigglypuff", "encounter": "10%", "level": "3,5,7"},
+                                    {"id": 63, "name": "Abra", "encounter": "15%", "level": "7"}
+                                
+                                ]
+                            },
+                            "surfing":{
+                                "red":None,
+                                "blue":None,
+                                "yellow":[{"id": 54, "name": "Psyduck", "encounter": "95%", "level": "15"},
+                            {"id": 55, "name": "Golduck", "encounter": "5%", "level": "15,20"}]},
                             "fishing": {
                                 "oldrod": {
                                     "red": [
@@ -172,10 +368,14 @@ _pokeradar = {
                                         {"id": 60, "name": "poliwag", "encounter": "50%", "level": "10"},
                                         {"id": 118, "name": "Goldeen", "encounter": "50%", "level": "10"}
                                     ]
-                                }
+                                },
+                                "superrod":{"red":[{"id": 90, "name": "Shellder", "encounter": "50%", "level": "15"},
+                                                   {"id": 98, "name": "Krabby", "encounter": "50%", "level": "15"}],
+                                            "blue":[{"id": 90, "name": "Shellder", "encounter": "50%", "level": "15"},
+                                                   {"id": 98, "name": "Krabby", "encounter": "50%", "level": "15"}],
+                                            "yellow":[ {"id": 118, "name": "Goldeen", "encounter": "100%", "level": "5,10,15,20"}]}
                             }
                         }
-                    }
                 }
             },
             "gen2": {
@@ -232,4 +432,4 @@ _pokeradar = {
             }
         }
     }
-}
+},}
